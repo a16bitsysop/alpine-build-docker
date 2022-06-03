@@ -1,6 +1,8 @@
 name: build_image
 
 on:
+  schedule:
+    - cron: '40 4 * * 5'
   push:
     branches:
       - 'main'
