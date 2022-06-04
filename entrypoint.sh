@@ -14,10 +14,11 @@ echo "PACKAGER_PRIVKEY=\"/home/$NME/.abuild/privkey.rsa\"" > /home/"$NME"/.abuil
 
 sudo apk -U upgrade -a
 
-cd /alpine/aport || die "Please mount aport to build into /alpine/aport"
+[ ! -f /alpine/aport/APKBUILD ] && die "Please mount aport to build into /alpine/aport"
 
-sudo mkdir src pkg
-sudo chown "$NME":"$NME" src pkg
+mkdir temp-aport
+cp /alpine/aport/* temp-aport
+cd temp-aport
 
 echo "Building for repo $REPO_DESC"
 abuild -r -D "$REPO_DESC" -P /alpine/package
