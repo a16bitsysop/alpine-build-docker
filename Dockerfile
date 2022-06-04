@@ -26,3 +26,5 @@ COPY --chmod=755 entrypoint.sh ./
 
 # switch to build user
 USER ${NME}
+
+CMD [ "entrypoint.sh" ]
