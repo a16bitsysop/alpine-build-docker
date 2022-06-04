@@ -16,9 +16,9 @@ sudo apk -U upgrade -a
 
 [ ! -f /alpine/aport/APKBUILD ] && die "Please mount aport to build into /alpine/aport"
 
-mkdir temp-aport
-cp /alpine/aport/* temp-aport
-cd temp-aport
+mkdir /tmp/aport
+cp /alpine/aport/* /tmp/aport
+cd /tmp/aport
 
 echo "Building for repo $REPO_DESC"
 abuild -r -D "$REPO_DESC" -P /alpine/package
