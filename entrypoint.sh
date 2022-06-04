@@ -1,6 +1,6 @@
 #!/bin/sh
 : "${NME:="builder"}"
-: "${REPO_DESC:="modified  alpine repo"}"
+: "${REPO_DESC:="modified_alpine_repo"}"
 
 die() {
   echo "$@"
