@@ -1,6 +1,8 @@
 #!/bin/sh
 : "${NME:="builder"}"
 : "${REPO_DESC:="modified_alpine_repo"}"
+ALPINE_VER="$(cat /etc/alpine-release)"
+ALPINE_VER="${ALPINE_VER%.*}"
 
 die() {
   echo "$@"
@@ -22,6 +24,10 @@ doas apk -U upgrade -a
 
 [ ! -f /alpine/aport/APKBUILD ] && die "Please mount aport to build into /alpine/aport"
 
+ADIR=/tmp/v"$ALPINE_VER"/aport
+mkdir -p "$ADIR"
+cp /alpine/aport/* "$ADIR"
+cd "$ADIR"
+
 echo "Building for repo $REPO_DESC"
-cd /alpine/aport
 abuild -r -D "$REPO_DESC" -P /alpine/package
